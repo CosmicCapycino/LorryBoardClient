@@ -1,7 +1,7 @@
 {
-  "API":{
-    "Url": "localhost",
-    "Port": 7041,
-    "Ssl": false
+  "apiServer": {
+    "host": "localhost",
+    "port": 7041,
+    "ssl": true
   }
 }
