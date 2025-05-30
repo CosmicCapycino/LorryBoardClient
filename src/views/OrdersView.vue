@@ -2,12 +2,10 @@
   <div id="order-container">
     <h1>Orders</h1>
       <v-container id="form-controls">
-        <v-btn
-            @click="toggleForm()"
-            color="#016FB9"
-            text="Create Order"
-            variant="flat"
-        ></v-btn>
+        <v-btn @click="toggleForm()" color="#016FB9" variant="flat">
+          <v-icon icon="mdi-plus"/>
+          Create Order
+        </v-btn>
         <v-dialog max-width="500" persistent v-model="showForm">
           <template v-slot:default="{ isActive }">
             <v-card>
@@ -68,8 +66,13 @@
         {{ formatDate(item.departureTime) }}
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-btn @click="showEditForm(item.id)" class="mr-4">Edit</v-btn>
-        <v-btn @click="deleteOrder(item.id)">Delete</v-btn>
+        <v-btn @click="showEditForm(item.id)" class="mr-4">
+          <v-icon icon="mdi-pencil"/>
+          Edit
+        </v-btn>
+        <v-btn @click="deleteOrder(item.id)">
+          <v-icon icon="mdi-trash-can"/>
+          Delete</v-btn>
       </template>
     </v-data-table>
   </div>
