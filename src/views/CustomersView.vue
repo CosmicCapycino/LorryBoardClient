@@ -2,12 +2,10 @@
   <div id="order-container">
     <h1>Customers</h1>
     <v-container id="form-controls">
-      <v-btn
-          @click="toggleForm()"
-          color="#016FB9"
-          text="Add Customer"
-          variant="flat"
-      ></v-btn>
+      <v-btn @click="toggleForm()" color="#016FB9" variant="flat">
+        <v-icon icon="mdi-plus"/>
+        Create Customer
+      </v-btn>
       <v-dialog max-width="500" persistent v-model="showForm">
         <template v-slot:default="{ isActive }">
           <v-card>
@@ -49,8 +47,14 @@
     </v-container>
     <v-data-table :headers="headers" :items="allCustomers" elevation="1">
       <template v-slot:item.actions="{ item }">
-        <v-btn @click="showEditForm(item.customer.id)" class="mr-4">Edit</v-btn>
-        <v-btn @click="deleteCustomer(item.customer.id)">Delete</v-btn>
+        <v-btn @click="showEditForm(item.customer.id)" class="mr-4">
+          <v-icon icon="mdi-pencil"/>
+          Edit
+        </v-btn>
+        <v-btn @click="deleteCustomer(item.customer.id)">
+          <v-icon icon="mdi-trash-can"/>
+          Delete
+        </v-btn>
       </template>
     </v-data-table>
   </div>
