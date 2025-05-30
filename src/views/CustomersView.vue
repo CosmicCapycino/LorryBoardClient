@@ -5,5 +5,8 @@
 <style scoped>
 
 </style>
-<script setup lang="ts">
+<script>
+export default{
+  name: "CustomersView"
+}
 </script>

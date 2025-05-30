@@ -1,10 +1,12 @@
 import axios from "axios";
 import orderRoutes from "./routes/orderRoutes";
 import customerRoutes from "@/services/apiService/routes/customerRoutes";
+import reportRoutes from "@/services/apiService/routes/reportRoutes";
 
 const axiosInstance = axios.create();
 const orders = new orderRoutes(axiosInstance);
 const customers = new customerRoutes(axiosInstance);
+const reports = new reportRoutes(axiosInstance);
 
 function configureService(apiConfig) {
     axiosInstance.defaults.baseURL = (apiConfig.ssl ? 'https' : 'http') + "://" + apiConfig.host + (apiConfig.port !== null ? `:${apiConfig.port}` : null);
@@ -29,6 +31,7 @@ const apiService = {
     install,
     orders,
     customers,
+    reports,
 }
 
 export default apiService;

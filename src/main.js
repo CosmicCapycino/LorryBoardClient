@@ -9,6 +9,8 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import apiService from "@/services/apiService";
 
+import VueApexCharts from "vue3-apexcharts";
+
 const vuetify = createVuetify({
     components,
     directives,
@@ -20,6 +22,7 @@ fetch(process.env.BASE_URL + 'config.json').then((response) => response.json()).
     app.use(router);
     // Everything below here setups up the container regardless of if auth is enabled
     app.use(apiService, true, config.apiServer);
+    app.use(VueApexCharts);
     app.use(vuetify);
     app.mount('#app');
 });
