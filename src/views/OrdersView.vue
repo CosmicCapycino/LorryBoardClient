@@ -27,7 +27,7 @@
                       />
                       <div id="arrival-time-controls">
                         <v-text-field label="Arrival Time" type="datetime-local" style="width: fit-content" v-model="createOrderForm.arrivalTime" class="mr-4"></v-text-field>
-                        <v-text-field label="Departure Time" type="datetime-local" style="width: fit-content" v-model="createOrderForm.departureTime"></v-text-field>
+                        <v-text-field label="Departure Time" type="datetime-local" style="width: fit-content" v-model="createOrderForm.departureTime" :disabled="(this.createOrderForm.status !== 'Complete')"></v-text-field>
                       </div>
                       <v-select :items="choices" label="Safe to load?" v-model="createOrderForm.safeToLoad"></v-select>
                       <v-select :items="choices" label="Key held?" v-model="createOrderForm.hasKeys"></v-select>
@@ -88,7 +88,7 @@ export default {
           value: true,
         },
         {
-          title: 'Yes',
+          title: 'No',
           value: false,
         },
       ],
@@ -105,6 +105,7 @@ export default {
         { title: 'Safe To Load', key: 'safeToLoad', sortable: true, align: 'center'  },
         { title: 'Keys Held', key: 'hasKeys', sortable: true, align: 'center'  },
         { title: 'Status', key: 'status', sortable: true, align: 'center'  },
+        { title: 'On Time', key: 'onTime', sortable: true, align: 'center'  },
         { title: 'Actions', key: 'actions', align: 'center' },
       ],
       showForm: false,
@@ -157,6 +158,17 @@ export default {
     },
     toggleForm() {
       this.showForm = !this.showForm;
+      if(!this.isEditing) {
+        this.createOrderForm.customer = '';
+        this.createOrderForm.arrivalTime = '';
+        this.createOrderForm.departureTime = '';
+        this.createOrderForm.safeToLoad = false
+        this.createOrderForm.hasKeys = false;
+        this.createOrderForm.status = '';
+      }
+      if(!this.showForm) {
+        this.isEditing = false;
+      }
     },
     showEditForm(id) {
       this.isEditing = true;
